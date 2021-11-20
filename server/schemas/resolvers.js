@@ -40,12 +40,24 @@ const resolvers = {
             if(context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    { $pull: { savedBooks: {bookId}}},
+                    { $push: { savedBooks: {bookId}}},
                     { new: true }
                 );
                 return updatedUser;
             }
-            throw new AuthenticationError('Could not delete book');
+            throw new Error('Could not delete book');
+        },
+
+        removeBook: async (parent, { bookId }, context) => {
+            if(context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id},
+                    {$pull: {savedBooks: {bookId}}},
+                    {new: true}
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('Could not delete book!');
         }
     }
 };
