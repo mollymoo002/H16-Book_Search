@@ -18,7 +18,7 @@ const SearchBooks = () => {
   const [saveBook, {error}] = useMutation(SAVE_BOOK);
 
   useEffect(() => {
-    return () => savedBookIds(savedBookIds);
+    return () => saveBookIds(saveBookIds);
   });
 
   const handleFormSubmit = async (event) => {
