@@ -18,7 +18,7 @@ const SearchBooks = () => {
   const [saveBook, {error}] = useMutation(SAVE_BOOK);
 
   useEffect(() => {
-    return () => saveBookIds(saveBookIds);
+    return () => saveBookIds(savedBookIds);
   });
 
   const handleFormSubmit = async (event) => {
@@ -69,7 +69,7 @@ const SearchBooks = () => {
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
           <h1>Search for Books!</h1>
-          <Form onSubmit={handleFormSubmit}>
+          <Form onClick={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
                 <Form.Control
