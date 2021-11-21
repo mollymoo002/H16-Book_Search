@@ -40,8 +40,8 @@ const resolvers = {
             if(context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    { $push: { savedBooks: {bookId}}},
-                    { new: true }
+                    { $push: { savedBooks: args}},
+                    { new: true, runValidators: true }
                 );
                 return updatedUser;
             }
